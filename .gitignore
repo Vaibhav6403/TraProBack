@@ -1,0 +1,17 @@
+# Ignore compiled files
+*.class
+*.o
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignore environment files
+.env
+node_modules/

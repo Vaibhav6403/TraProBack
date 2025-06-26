@@ -1,0 +1,133 @@
+<!-- Core Features:-
+Personal map to store favourite places--done
+map based click to add custom place -- done
+save place info like name, type --done
+toggle my places/all places--done
+toggle between my place and friend places -- not done
+marker click to view place info -- half done (the info needs to be presented properly)
+
+Filtering System:-
+Filter by different category, preference etc -- done
+distance filter -- not done
+filter ui on sidebar --done
+navbar triggers sidebar -- done
+badge count of active filters in navbar -- need to think on it
+
+Trip Planner Features:-
+create a trip--done
+add places to trip -- not done
+add members--done
+view trip specific places with markers -- not done
+day-wise or time-wise place planning -- not done
+drag and drop itinerary --  not done
+
+Profile features:-
+Add profile -- done
+Edit profile -- not done
+Add custom markers for places --not done
+search-places -- not done
+
+Social Features:-
+View shared trips from friends -- not done
+comments/likes on shared places -- not done
+
+Chat and collab:-
+One-to-one chat -- not done
+group chat-- done
+notifications--for requests done(any other could be added)
+Add to the total of money and also personal total of the money in a trip when i add in group chat -- not done
+
+UI/UX Enhancements:-
+Changing login and signup page and make them attaractive -- not done
+Sidebar slidein for filters--done
+responsive design--not done
+code refactoring -- not done
+marker clustering or smart grouping -- not done
+animated transitions --not done
+ui-proper color and other setting -- not done
+saved filters or itineraries --not done
+
+Smart Travel Features:-
+Day-by-day(calender view of trip) -- still need to think about it
+AI trip suggestions(suggest places nearby based on tags etc) -- not done
+Weather overlay(show weather info for that dates) -- not done
+offline mode-- could think of integrate it
+
+Deep Personalization:-
+Favourite tips/saved lists(create and share themed lists) -- not done
+Add personal notes:- notes or small diary for places -- not done
+Place vibes:- Songs related to places -- not done
+sticky pins on map:-always show certain places on top -- not done
+
+Social collab extra features:-
+real-time group trip edit:-allow multiple users to edit places in trip -- not done
+polls or votes:- not done
+shared trip gallery -- not done
+challenges/bucket list -- not done
+
+Engagement features:-
+Travel Badges:- reward users for places visited --not done
+Travel stats dashboard:- number of cities top tags used -- not done
+discover hidden gems:- suggest lesser-known places from community users -- not done
+Weelky place recommender:- This week's new hidden spots nearby --not done
+
+
+Account sharing and privacy:-
+Private vs public trip--not done
+share trip links--not done
+trip templates:- reuse a trip plan as base for another trip -- not done
+role based access:- for group trips-admin editor viewer -- not done
+
+
+
+
+
+ v1.0 – MVP: Core Features & Filtering (Current State + Finish Incomplete Parts)
+🔹 Already done:
+
+Personal map, marker add, save info
+
+Filter system UI
+
+Trip creation
+
+Group chat (basic)
+
+Sidebar system
+
+Profile add
+
+🔸 To finish for v1.0:
+
+Toggle my/friends places
+
+Proper info display on marker click
+
+Add places to trip (selection + save)
+
+Badge count of active filters
+
+Responsive design
+
+Minor UI polish & mobile support
+
+Goal: A fully working personal map + filtering + trip base
+🕒 ETA: 2–3 weeks
+
+👥 v1.1 – Social Layer: Sharing & Viewing Others' Places
+🔸 Features to implement:
+
+Toggle between my/friend places
+
+View shared trips from friends
+
+Private vs public trip
+
+Share trip links
+
+Likes/comments on places
+
+Notifications polish
+
+Goal: Add friend layer and basic social interaction
+🕒 ETA: 1–2 weeks -->
