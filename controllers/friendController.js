@@ -153,7 +153,7 @@ const getFriends = async (req, res) => {
 
 const createTrip = async (req, res) => {
     try {
-        const { name, members, createdBy } = req.body;
+        const { name, members, createdBy, locations } = req.body;
         if (!name || !members || !Array.isArray(members) || members.length === 0) {
             return res.status(400).json({ message: 'Trip name and members are required.' });
         }
@@ -162,6 +162,14 @@ const createTrip = async (req, res) => {
         // console.log("the users are",users)
         if (users.length !== members.length) {
             return res.status(404).json({ message: 'One or more members not found.' });
+        }
+        if (!locations || !Array.isArray(locations) || locations.length === 0) {
+            return res.status(400).json({ message: 'Locations are required and must be an array.' });
+        }
+
+        const locationDocs = await Location.find({ _id: { $in: locations } });
+        if (locationDocs.length !== locations.length) {
+            return res.status(404).json({ message: 'One or more locations not found.' });
         }
         let imageUrl = '';
         let imageId = '';
@@ -180,13 +188,14 @@ const createTrip = async (req, res) => {
         const trip = new Trip({
             createdBy: createdUser._id,
             name,
-            members: memberIds, 
+            members: memberIds,
             image: {
                 url: imageUrl,
                 public_id: imageId
-            }
+            },
+            locations
         });
-        console.log("the trip is",trip)
+        console.log("the trip is", trip)
 
         await trip.save();
 
@@ -196,7 +205,22 @@ const createTrip = async (req, res) => {
         res.status(500).json({ message: "Internal server error in creating trip", error })
     }
 }
+const getTrip = async (req, res) => {
+    try {
+        const { tripId } = req.body;
 
+        if (!tripId) {
+            return res.status(400).json({ error: 'tripId is required' });
+        }
+        const trip = await Trip.findById(tripId).populate('locations');
+        if (!trip) return res.status(404).json({ error: 'Trip not found' });
+
+        res.json({ message: 'Trip fetched successfully', trip: trip.toObject() });
+    }
+    catch (error) {
+        console.error("the error in get one trip is", error);
+    }
+}
 const getTrips = async (req, res) => {
     try {
         const { username } = req.body;
@@ -212,6 +236,50 @@ const getTrips = async (req, res) => {
     }
 }
 
+const addLocationToTrips = async (req, res) => {
+    try {
+        const { tripIds, locationId } = req.body;
+
+        if (!tripIds || !Array.isArray(tripIds) || tripIds.length === 0) {
+            return res.status(400).json({ message: 'tripIds must be a non-empty array.' });
+        }
+
+        if (!locationId) {
+            return res.status(400).json({ message: 'locationId is required.' });
+        }
+
+        const locationExists = await Location.findById(locationId);
+        if (!locationExists) {
+            return res.status(404).json({ message: 'Location not found.' });
+        }
+
+        const updatedTrips = [];
+
+        for (const tripId of tripIds) {
+            const trip = await Trip.findById(tripId);
+            if (!trip) {
+                continue; // skip if trip doesn't exist
+            }
+
+            // Only add if not already present
+            if (!trip.locations.includes(locationId)) {
+                trip.locations.push(locationId);
+                await trip.save();
+                updatedTrips.push(trip);
+            }
+        }
+
+        return res.status(200).json({
+            message: 'Location added to selected trips successfully.',
+            updatedTrips
+        });
+
+    } catch (error) {
+        console.error('Error in addLocationToTrips:', error);
+        return res.status(500).json({ message: 'Internal server error.', error });
+    }
+};
+
 const getTripMessages = async (req, res) => {
     try {
         const { tripId } = req.body;
@@ -226,4 +294,4 @@ const getTripMessages = async (req, res) => {
     }
 }
 
-module.exports = { sendFriendRequest, getFriendLocations, searchFriends, getFriends, getFriendRequests, acceptFriendRequest, createTrip, getTrips, getTripMessages }
+module.exports = { sendFriendRequest, getFriendLocations, searchFriends, getFriends, getFriendRequests, acceptFriendRequest, createTrip, addLocationToTrips, getTrips, getTrip, getTripMessages }

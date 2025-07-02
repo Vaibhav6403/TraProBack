@@ -7,7 +7,8 @@ const tripSchema = new mongoose.Schema({
   image: {
     url: String,
     public_id: String
-}
+},
+locations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Location' }]
 },{ timestamps: true });
 
 module.exports = mongoose.model('Trip', tripSchema);

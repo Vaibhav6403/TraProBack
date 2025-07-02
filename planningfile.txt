@@ -79,7 +79,7 @@ trip templates:- reuse a trip plan as base for another trip -- not done
 role based access:- for group trips-admin editor viewer -- not done
 
 
-
+//also can add youtube video links notes 
 
 
  v1.0 – MVP: Core Features & Filtering (Current State + Finish Incomplete Parts)
@@ -99,17 +99,17 @@ Profile add
 
 🔸 To finish for v1.0:
 
-Toggle my/friends places
+Toggle my/friends places -- done
 
-Proper info display on marker click
+Proper info display on marker click --done
 
-Add places to trip (selection + save)
+Add places to trip (selection + save) -- done
+    
+Badge count of active filters --done
 
-Badge count of active filters
+Responsive design -- for login done enough for now
 
-Responsive design
-
-Minor UI polish & mobile support
+Minor UI polish -- done 
 
 Goal: A fully working personal map + filtering + trip base
 🕒 ETA: 2–3 weeks
@@ -128,6 +128,8 @@ Share trip links
 Likes/comments on places
 
 Notifications polish
+
+Numbers on side to move from one place to another in trip so user does not need to move manually
 
 Goal: Add friend layer and basic social interaction
 🕒 ETA: 1–2 weeks -->
