@@ -4,37 +4,42 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectdb = require('./database/db');
 const router = require('./routes/authRoutes');
-const socket = require('./websocket/socket');
-const http = require('http')
-const WebSocket = require('ws');
+const setupWebSocket = require('./websocket/socket');
+const http = require('http');
 const path = require('path');
 
 dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Connect to MongoDB
 connectdb();
 
-app.use('/api/user',router)
+// API routes
+app.use('/api/user', router);
+
+// Serve static frontend files
 app.use(express.static(path.join(__dirname, '../frontend-dist')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../frontend-dist', 'index.html'));
-// });
+// SPA fallback route — serve index.html for any other requests (except API/static)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend-dist', 'index.html'));
+});
+
+// Optional: simple health check route for API root
+app.get('/api', (req, res) => {
+  res.send('API is running...');
+});
 
 const PORT = process.env.PORT || 5000;
-
-app.get('/', (req, res) => {
-    console.log("")
-    res.send('API is running...')});
-
 const server = http.createServer(app);
-socket(server);
-// const wss = new WebSocket.Server({ server });
-// wss.on('connection', (ws, req) => {
-//   // Optional: extract token from req.url
-//   console.log('WebSocket client connected');
-// });
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
+// Setup WebSocket server
+setupWebSocket(server);
+
+// Start HTTP + WebSocket server
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
