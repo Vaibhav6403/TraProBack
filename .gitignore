@@ -13,5 +13,5 @@ Thumbs.db
 .idea/
 
 # Ignore environment files
-.env
+# .env
 node_modules/
