@@ -79,7 +79,8 @@ trip templates:- reuse a trip plan as base for another trip -- not done
 role based access:- for group trips-admin editor viewer -- not done
 
 
-//also can add youtube video links notes 
+//also can add youtube video links notes
+// could also search for train data and add google photos preview links 
 
 
  v1.0 – MVP: Core Features & Filtering (Current State + Finish Incomplete Parts)
