@@ -7,6 +7,7 @@ const router = require('./routes/authRoutes');
 const socket = require('./websocket/socket');
 const http = require('http')
 const WebSocket = require('ws');
+const path = require('path');
 
 dotenv.config();
 const app = express();
