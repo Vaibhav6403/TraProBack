@@ -16,6 +16,7 @@ app.use(express.json());
 
 connectdb();
 
+app.use('/api/user',router)
 app.use(express.static(path.join(__dirname, '../frontend-dist')));
 
 app.get('*', (req, res) => {
@@ -24,7 +25,6 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.use('/api/user',router)
 app.get('/', (req, res) => {
     console.log("")
     res.send('API is running...')});
