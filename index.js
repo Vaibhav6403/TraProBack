@@ -32,7 +32,7 @@ app.get('/api', (req, res) => {
 });
 app.get('/', (req, res) => {
     console.log(path.join(__dirname, './frontend-dist', 'index.html'))
-  res.sendFile(path.join(__dirname, './frontend-dist', 'index.html'));
+  res.sendFile(path.join(__dirname, './frontend-dist'));
 });
 
 const PORT = process.env.PORT || 5000;
