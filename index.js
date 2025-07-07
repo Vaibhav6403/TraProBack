@@ -21,11 +21,11 @@ connectdb();
 app.use('/api/user', router);
 
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, '../frontend-dist')));
+app.use(express.static(path.join(__dirname, './frontend-dist')));
 
 // SPA fallback route — serve index.html for any other requests (except API/static)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend-dist', 'index.html'));
+  res.sendFile(path.join(__dirname, './frontend-dist', 'index.html'));
 });
 
 // Optional: simple health check route for API root
