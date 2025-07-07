@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    // environment {
-        
-    // }
-
     stages {
         stage('Checkout') {
             steps {
@@ -12,34 +8,18 @@ pipeline {
             }
         }
 
-        stage('Install dependencies') {
+        stage('Install Dependencies') {
             steps {
-                // Install all dependencies for build/test
-                bat 'npm ci'
+                bat 'npm ci'  // Or 'npm install'
             }
         }
 
-        // stage('Test') {
-        //     steps {
-        //         bat 'npm test'  // or your test script
-        //     }
-        // }
-
-        stage('Build') {
+        stage('Start Server') {
             steps {
-                // If you have a build step, e.g. tsc or babel
-                // Otherwise, skip this stage
-                bat 'npm run build'
+                // Optional: run locally or SSH into EC2
+                bat 'npm start'
             }
         }
-
-        // stage('Deploy') {
-        //     steps {
-        //         // Example: deploy script, or start server, or docker build & push
-        //         // You might want to set NODE_ENV=production here
-        //         bat 'set NODE_ENV=production && npm run start'
-        //     }
-        // }
     }
 
     post {
