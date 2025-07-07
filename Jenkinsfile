@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        // Can be unset or development during install and test
-    }
+    // environment {
+        
+    // }
 
     stages {
         stage('Checkout') {
