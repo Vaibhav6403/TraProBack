@@ -10,14 +10,16 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm ci'  // Or 'npm install'
+                sh 'npm ci'  // clean install dependencies
             }
         }
 
-        stage('Start Server') {
+        stage('Deploy & Restart Server') {
             steps {
-                // Optional: run locally or SSH into EC2
-                bat 'npm start'
+                sh '''
+                pm2 restart backend || pm2 start npm --name backend -- start
+                pm2 save
+                '''
             }
         }
     }
