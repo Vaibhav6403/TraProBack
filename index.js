@@ -19,10 +19,9 @@ connectdb();
 
 // API routes
 app.use('/api/user', router);
- console.log(path.join(__dirname, './frontend-dist'))
-  console.log(path.join(__dirname, './frontend-dist', 'index.html'))
+
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, './frontend-dist')));
+app.use(express.static(path.join(__dirname, './dist')));
 
 // SPA fallback route — serve index.html for any other requests (except API/static)
 
@@ -30,9 +29,9 @@ app.use(express.static(path.join(__dirname, './frontend-dist')));
 app.get('/api', (req, res) => {
     res.send('API is running...');
 });
-app.get('/', (req, res) => {
-    console.log(path.join(__dirname, './frontend-dist', 'index.html'))
-  res.sendFile(path.join(__dirname, './frontend-dist'));
+app.get('/{*any}', (req, res) => {
+    console.log(path.join(__dirname, './dist', 'index.html'))
+  res.sendFile(path.join(__dirname, './dist','index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
