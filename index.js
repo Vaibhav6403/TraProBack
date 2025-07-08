@@ -37,7 +37,7 @@ app.get('/{*any}', (req, res) => {
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 
-// Setup WebSocket server
+// Setup WebSocket server change to check
 setupWebSocket(server);
 
 // Start HTTP + WebSocket server
