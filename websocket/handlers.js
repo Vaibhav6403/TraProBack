@@ -16,7 +16,7 @@ exports.handleMessage = async (ws,data,clients,tripSubscriptions)=>{
   console.log("handelmessage")
   if (message.type === 'subscribe' && message.tripId) {
    const tripId = message.tripId;
-    console.log("inside handelmessage")
+    console.log("inside handelmessage subscribe",message.tripId)
     try {
       // Fetch trip from DB
       const trip = await Trip.findById(tripId).select('members');
@@ -33,7 +33,7 @@ exports.handleMessage = async (ws,data,clients,tripSubscriptions)=>{
       }
 
       // Subscribe user to trip
-      // console.log("the trip subscriptions are",tripSubscriptions)
+      console.log("the trip subscriptions are",tripSubscriptions)
       if (!tripSubscriptions.has(tripId)) {
         tripSubscriptions.set(tripId, new Set());
       }
